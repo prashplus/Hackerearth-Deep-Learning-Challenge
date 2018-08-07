@@ -1,6 +1,6 @@
 # Hackerearth Deep Learning Challenge
 
-This repository is for reference for those who want to try Hackerearth challenge of Image Classification over 30 Labels.
+Hackerearch is known for its 
 
 ## Authors
 
