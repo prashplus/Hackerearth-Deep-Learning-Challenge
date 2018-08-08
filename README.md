@@ -49,6 +49,8 @@ Preprocessed data:
 
 
 
+NOTE: This repository is a work in progress project. The models will be more efficient over time.
+
 ## Author
 
 * **Prashant Piprotar** - - [Prash+](https://github.com/prashplus)
