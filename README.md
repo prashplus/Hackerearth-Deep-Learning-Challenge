@@ -42,11 +42,44 @@ The below steps are just the explanations of the code provided in the "data prep
 
 Now, we are ready for the training part. But, we have to save the preprocessed data, since we are going to run the program multiple times and we don't want all those image conversions (time consuming stuffs) happen again and again. So, I have already uploaded the preprocessed dataset if anyone wants to skip this step.
 
-Preprocessed data: 
+Preprocessed data: https://drive.google.com/open?id=1Yzx5AeuNq7mo0AI3y1jf2SBi4gaZcFKE
 
-## Training
+## Model Design and Training
 
+For starters just copy the CIFAR 10 Neural Net design and then make the changes to it. So, that you can learn by changing which parameter you can get the max efficiency or higher accuracy with lower time on training.
 
+```python
+model = Sequential()
+model.add(Conv2D(32, (3, 3), padding='same',
+                 input_shape=x_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(Conv2D(32, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, (3, 3), padding='same'))
+model.add(Activation('relu'))
+model.add(Conv2D(64, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Flatten())
+model.add(Dense(512))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes))
+model.add(Activation('softmax'))
+```
+
+For training, we have to split the dataset in to two parts: Training and testing. It is preferred to divide the dataset into 70:30 ratio for training and testing respectively.
+
+Now run the [Keras code](https://github.com/prashplus/Hackerearth-Deep-Learning-Challenge/blob/master/dl_challenge_keras.py) or [tflearn code](https://github.com/prashplus/Hackerearth-Deep-Learning-Challenge/blob/master/dl_challenge_tflearn.py).
+
+If you don't have GPUs to train the model, then don't think about doing it on your machine because it may take months on doing so. I have included the [Jupyter Notebooks](https://github.com/prashplus/Hackerearth-Deep-Learning-Challenge/tree/master/Jupyter%20Notebooks) which you can copy and run it on the [Google Colab](https://colab.research.google.com). They are GPU runtime for Notebooks which provides Nvidia Tesla K80 for limited time. (Note: Don't close browser or it will terminate the sessions with the notebooks. And the training can't continue from where you left.)
+
+Suggestions: Design your program in such a way that you put checkpoints on the way during the check points (saving your model's intermediate state) and do the training in batches instead of loading all the images at once.
 
 
 NOTE: This repository is a work in progress project. The models will be more efficient over time.
