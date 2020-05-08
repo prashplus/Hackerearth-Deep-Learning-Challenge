@@ -35,61 +35,63 @@ def labelling(result):
       if(result[i][j]==1):
         #print(answer)
         if answer == 0:
-          print("ru")
+          print("antelope")
         elif answer == 1:
-          print("a")
+          print("bat")
         elif answer == 2:
-          print("Aa")
+          print("beaver")
         elif answer == 3:
-          print("i")
+          print("bobcat")
         elif answer == 4:
-          print("I")
+          print("buffalo")
         elif answer == 5:
-          print("u")
+          print("chihuahua")
         elif answer == 6:
-          print("U")
+          print("chimpanzee")
         elif answer == 7:
-          print("e")
+          print("collie")
         elif answer == 8:
-          print("ai")
+          print("dalmatian")
         elif answer == 9:
-          print("o")
+          print("germanshepherd")
         elif answer == 10:
-          print("au")
+          print("grizzlybear")
         elif answer == 11:
-          print("am")
+          print("hippopotamus")
         elif answer == 12:
-          print("ah")
+          print("horse")
         elif answer == 13:
-          print("ka")
+          print("killerwhale")
         elif answer == 14:
-          print("kha")
+          print("mole")
         elif answer == 15:
-          print("g")
+          print("mouse")
         elif answer == 16:
-          print("gh")
+          print("otter")
         elif answer == 17:
-          print("ch")
+          print("ox")
         elif answer == 18:
-          print("chh")
+          print("persiancat")
         elif answer == 19:
-          print("j")
+          print("raccoon")
         elif answer == 20:
-          print("jh")
+          print("rat")
         elif answer == 21:
-          print("T")
+          print("rhinoceros")
         elif answer == 22:
-          print("Th")
+          print("seal")
         elif answer == 23:
-          print("D")
+          print("siamesecat")
         elif answer == 24:
-          print("Dh")
+          print("spidermonkey")
         elif answer == 25:
-          print("N")
+          print("squirrel")
+        elif answer == 26:
+          print("walrus")
         elif answer == 27:
-          print("th")
+          print("weasel")
         elif answer == 28:
-          print("d")
+          print("wolf")
         else:
           print("Other")
       answer += 1
