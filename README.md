@@ -4,7 +4,7 @@ Hackerearth is known for its popular coding competitions and hackethons. In 2018
 
 The challenge task was to create a Machine Learning model with the highest accuracy by using the provided image dataset (19000 images : 6.7GB) of 30 types of animals for both Training and Testing.
 
-I have used **Convolution Neural Network** as the Deep learning model for the image classification. Trained on a well known ML library **Tensorflow** and the famous high level APIs **Keras** and **TFLearn** over the Tensorflow (for reducing the code complexity).
+I have used **Convolution Neural Network** as the Deep learning model for the image classification. Trained on a well known ML library **Tensorflow** and the famous high level APIs **Keras** over the Tensorflow (for reducing the code complexity).
 
 So, I have divided the task into simple 3 steps:
 
@@ -20,9 +20,7 @@ Ofcourse, these can be further divided but for the shake of the simplification t
 
 All the dataset provided by the Hackerearth were not named or grouped according to the class labels i.e., Animal names, they had provided other meta data files like csv which contained all the labels respective to the image file name. Therefore, I have already preprocessed/renamed them by appending the animal name with the image file name which will make our task easy while assigning the labels to the images without looking at the meta files. I have uploaded the renamed data in my google drive. All you need to do is just download the data and extract it.
 
-* Link for Datasets: https://drive.google.com/open?id=15amrCu1Xbte3gHpDvS0UBwkGzUynAOYQ
-
-* Link for meta data: https://drive.google.com/open?id=1yXzNnxZQx5Npoi3Gs8XMtCPIN1YZcTYr
+* Link for Datasets: https://drive.google.com/drive/folders/1ucQ8bmSbDmccMClXFM-1K5O3MXqxUHyW?usp=sharing
 
 If its too large to download the file and don't want to waste your internet, then just download the preprocessed dataset, link is give at the end of this section.
 
@@ -42,7 +40,7 @@ The below steps are just the explanations of the code provided in the "data prep
 
 Now, we are ready for the training part. But, we have to save the preprocessed data, since we are going to run the program multiple times and we don't want all those image conversions (time consuming stuffs) happen again and again. So, I have already uploaded the preprocessed dataset if anyone wants to skip this step.
 
-Preprocessed data: https://drive.google.com/open?id=1Yzx5AeuNq7mo0AI3y1jf2SBi4gaZcFKE
+Preprocessed data: https://drive.google.com/drive/folders/1ucQ8bmSbDmccMClXFM-1K5O3MXqxUHyW?usp=sharing
 
 ## Model Design and Training
 
@@ -50,17 +48,17 @@ For starters just copy the CIFAR 10 Neural Net design and then make the changes 
 
 ```python
 model = Sequential()
-model.add(Conv2D(32, (3, 3), padding='same',
+model.add(Conv2D(64, (3, 3), padding='same',
                  input_shape=x_train.shape[1:]))
 model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
+model.add(Conv2D(64, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Conv2D(64, (3, 3), padding='same'))
+model.add(Conv2D(128, (3, 3), padding='same'))
 model.add(Activation('relu'))
-model.add(Conv2D(64, (3, 3)))
+model.add(Conv2D(128, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
@@ -71,11 +69,18 @@ model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(num_classes))
 model.add(Activation('softmax'))
+
+# Initiate RMSprop optimizer
+#opt = keras.optimizers.rmsprop(lr=0.001, decay=1e-6)
+opt = keras.optimizers.Adam(0.0005, beta_1=0.9, beta_2=0.999, amsgrad=True)
+#opt = keras.optimizers.SGD(lr=0.01, momentum=0.0, nesterov=False)
 ```
 
 For training, we have to split the dataset in to two parts: Training and testing. It is preferred to divide the dataset into 70:30 ratio for training and testing respectively.
 
-Now run the [Keras code](https://github.com/prashplus/Hackerearth-Deep-Learning-Challenge/blob/master/dl_challenge_keras.py) or [tflearn code](https://github.com/prashplus/Hackerearth-Deep-Learning-Challenge/blob/master/dl_challenge_tflearn.py).
+
+## Action
+Now run the [Keras code](https://github.com/prashplus/Hackerearth-Deep-Learning-Challenge/blob/master/train.py)
 
 If you don't have GPUs to train the model, then don't think about doing it on your machine because it may take months on doing so. I have included the [Jupyter Notebooks](https://github.com/prashplus/Hackerearth-Deep-Learning-Challenge/tree/master/Jupyter%20Notebooks) which you can copy and run it on the [Google Colab](https://colab.research.google.com). They are GPU runtime for Notebooks which provides Nvidia Tesla K80 for limited time. (Note: Don't close browser or it will terminate the sessions with the notebooks. And the training can't continue from where you left.)
 
